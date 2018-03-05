@@ -3,6 +3,8 @@ Install kafka &amp; zookeeper in GCP using terraform
 
 Here’s some very basic concepts you need to understand:
 
+-Apache Kafka is a distributed message broker designed to handle large volumes of real-time data efficiently Kafka runs as a cluster of one or more servers which makes it highly scalable and due to this distributed nature
+
 -A stream of messages of a particular type is defined as a topic. A Message is defined as a payload of bytes and a Topic is a category or feed name to which messages are published.
 
 -A Producer can be anyone who can publish messages to a Topic.
@@ -11,7 +13,7 @@ Here’s some very basic concepts you need to understand:
 
 -A Consumer can subscribe to one or more Topics and consume the published Messages by pulling data from the Brokers.
 
--Usage of Zookepper in Kafka: As for coordination and facilitation of distributed system ZooKeeper is used, for the same reason Kafka is using it. ZooKeeper is used for managing, coordinating Kafka broker. Notice, in Hadoop ecosystem, Zookeeper is also used for cluster management for Hadoop. Thus, we have to say Zookeeper is mainly solving the problem of reliable distributed coordination.
+-Usage of Zookepper in Kafka: ZooKeeper is used for managing & coordinating Kafka broker. Zookeeper is mainly solve the problem of reliable distributed coordination.
 
 # Steps to install Kafka cluster on Ubuntu 16.04
 
@@ -51,3 +53,28 @@ Here’s some very basic concepts you need to understand:
 /opt/kafka/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic topic-test --from-beginning > /tmp/kafka_consumed.txt
 
 cat /tmp/kafka_consumed.txt
+
+
+
+# GCP Setup 
+
+1.	Service Account Key file.
+This contains your authentication required for Terraform to talk to the Google API.
+You can get it under Google Cloud Platform -> API Manager -> Credentials -> Create Credentials -> Service account key.
+For the Key type field chose JSON. Put the downloaded file right were your Terraform config file is and name it account.json.
+2.	Make sure that you have an SSH key setup for your project: Compute Engine -> Metadata -> SSH Keys
+3.	Chose a valid machine image and machine type for your VM.
+4.	terraform plan to make sure everything is looking good
+5.	terraform apply
+6.	Find the IP of the box with terraform show | grep assigned_nat_ip
+
+
+# Install Terrafrom in Linux 
+
+1. SSH into your GCE instance
+2. wget https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
+3. unzip terraform_0.11.3_linux_amd64.zip
+4. sudo mv terraform /usr/local/bin/
+5. Confirm terraform binary is accessible: terraform --version
+
+
