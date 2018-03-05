@@ -57,7 +57,7 @@ You can type whatever text you want at the producer terminal and press â€œEnterâ
 
 # Set Up a Multi-Node Cluster (Optional)
 
-If you want to create a multi-broker cluster using more Ubuntu machines, you should repeat Step 1 to Step 5 on each of the new machines. Additionally, you should make the following changes in the server.properties file in each of them:
+If you want to create a multi-broker cluster using more Ubuntu machines, you should repeat Step 1 to Step 4 on each of the new machines. Additionally, you should make the following changes in the server.properties file in each of them:
 
 -The value of the broker.id property should be changed such that it is unique throughout the cluster
 -The value of the zookeeper.connect property should be changed such that all nodes point to the same ZooKeeper instance
