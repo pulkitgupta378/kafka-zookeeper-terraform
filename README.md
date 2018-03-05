@@ -1,5 +1,4 @@
-# kafka-zookeeper-terraform
-Install kafka &amp; zookeeper in GCP using terraform
+# How to install kafka-zookeeper in GCP using terraform
 
 Here’s some very basic concepts you need to understand:
 
@@ -44,16 +43,26 @@ Here’s some very basic concepts you need to understand:
 
  /opt/kafka/bin/kafka-topics.sh --list --zookeeper localhost:2181
 
-# Send message to topic as a producer
+# Start the Producer
 
- echo "hello world" | /opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic topic-test
+/opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic topic-test
 
-# Consume the send message
+# Start the Consumer
 
-/opt/kafka/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic topic-test --from-beginning > /tmp/kafka_consumed.txt
+/opt/kafka/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic topic-test --from-beginning 
 
-cat /tmp/kafka_consumed.txt
+# Interactively and real-timely testing
 
+You can type whatever text you want at the producer terminal and press “Enter” when you finished. The same message will be deliver to the consumer terminal.
+
+
+# Install Terrafrom in Linux 
+
+1. SSH into your GCE instance
+2. wget https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
+3. unzip terraform_0.11.3_linux_amd64.zip
+4. sudo mv terraform /usr/local/bin/
+5. Confirm terraform binary is accessible: terraform --version
 
 
 # GCP Setup 
@@ -69,12 +78,6 @@ For the Key type field chose JSON. Put the downloaded file right were your Terra
 6.	Find the IP of the box with terraform show | grep assigned_nat_ip
 
 
-# Install Terrafrom in Linux 
 
-1. SSH into your GCE instance
-2. wget https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
-3. unzip terraform_0.11.3_linux_amd64.zip
-4. sudo mv terraform /usr/local/bin/
-5. Confirm terraform binary is accessible: terraform --version
 
 
