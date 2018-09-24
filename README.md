@@ -71,7 +71,7 @@ If you want to create a multi-broker cluster using more Ubuntu machines, you sho
 4. sudo mv terraform /usr/local/bin/
 5. Confirm terraform binary is accessible: terraform --version
 
-
+#########################
 # GCP Setup 
 
 1.	Service Account Key file.
